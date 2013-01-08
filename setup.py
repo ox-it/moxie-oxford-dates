@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 install_requires = open('requirements.txt').readlines()
 
 setup(name='moxie-oxford-dates',
-    version='0.1',
+    version='0.2',
     packages=find_packages(),
     description='Oxford dates module for Moxie',
     author='Mobile Oxford',
