@@ -1,1 +1,1 @@
-oxford_term_dates>=1.0.4
+git+https://github.com/ox-it/oxford-term-dates.git#egg=oxford_term_dates

@@ -2,7 +2,7 @@ from flask import Blueprint, request
 from flask.helpers import make_response
 
 from moxie.core.representations import HALRepresentation
-from .views import Today
+from .views import Today, Date
 
 
 def create_blueprint(blueprint_name, conf):
@@ -12,6 +12,8 @@ def create_blueprint(blueprint_name, conf):
 
     oxford_dates_blueprint.add_url_rule('/today',
             view_func=Today.as_view('today'))
+    oxford_dates_blueprint.add_url_rule('/<year>-<month>-<day>',
+            view_func=Date.as_view('date'))
     return oxford_dates_blueprint
 
 
@@ -22,6 +24,8 @@ def get_routes():
     representation.add_link('self', '{bp}'.format(bp=path))
     representation.add_link('hl:today', '{bp}today'.format(bp=path),
                             title='Today date')
+    representation.add_link('hl:date', '{bp}{{year}}-{{month}}-{{day}}'.format(bp=path),
+                            title="Format arbitrary date")
     response = make_response(representation.as_json(), 200)
     response.headers['Content-Type'] = "application/json"
     return response
