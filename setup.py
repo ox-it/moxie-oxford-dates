@@ -12,6 +12,6 @@ setup(name='moxie-oxford-dates',
     url='https://github.com/ox-it/moxie-oxford-dates',
     include_package_data=True,
     setup_requires=["setuptools"],
-    install_requires=['oxford_term_dates'],
+    install_requires=install_requires,
     test_suite="moxie_oxford_dates.tests",
 )
