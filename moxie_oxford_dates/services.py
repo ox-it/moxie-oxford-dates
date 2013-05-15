@@ -12,7 +12,7 @@ class DatesService(Service):
         """Returns today's date with the name of the term.
         :param components: components to format
         """
-        return oxford_term_dates.format(components)
+        return oxford_term_dates.format_date(components)
 
     def get_today_components(self):
         """Returns today's date components (week number, term short/long)
