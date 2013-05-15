@@ -25,7 +25,7 @@ def get_routes():
     representation.add_link('hl:today', '{bp}today'.format(bp=path),
                             title='Today date')
     representation.add_link('hl:date', '{bp}{{yyyy}}-{{mm}}-{{dd}}'.format(bp=path),
-                            title="Format arbitrary date")
+                            templated=True, title="Format arbitrary date")
     response = make_response(representation.as_json(), 200)
     response.headers['Content-Type'] = "application/json"
     return response
