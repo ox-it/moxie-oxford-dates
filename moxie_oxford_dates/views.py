@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from flask import request, url_for
 
@@ -10,6 +10,8 @@ from .services import DatesService
 class Today(ServiceView):
     """View that exposes today's date
     """
+
+    expires = datetime.utcnow().replace(hour=23, minute=59, second=59)
 
     def handle_request(self):
         dates_service = DatesService.from_context()
@@ -26,6 +28,8 @@ class Today(ServiceView):
 
 
 class Date(ServiceView):
+
+    expires = timedelta(days=10)    # far
 
     def handle_request(self, year, month, day):
         dates_service = DatesService.from_context()
