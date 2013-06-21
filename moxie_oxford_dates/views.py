@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from flask import request, url_for
 
 from moxie.core.views import ServiceView
-from moxie.core.exceptions import abort
+from moxie.core.exceptions import BadRequest
 from .services import DatesService 
 
 
@@ -36,7 +36,7 @@ class Date(ServiceView):
         try:
             date = datetime(int(year), int(month), int(day))
         except ValueError as ve:
-            return abort(400, ve.message)
+            raise BadRequest(message=ve.message)
         components = dates_service.get_ox_components(date)
         return {
             'formatted': dates_service.get_formatted_date(components),
