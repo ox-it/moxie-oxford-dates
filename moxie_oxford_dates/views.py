@@ -35,11 +35,13 @@ class Today(ServiceView):
 
     @accepts('application/javascript')
     def as_jsonp(self, result):
+        callback = request.args.get('callback', 'callback')
         content = {
             'today': result['today'],
             'components': result['components'],
         }
-        jsonp = "response({js});".format(js=json.dumps(content))
+        jsonp = "{method}({js});".format(method=callback,
+                                         js=json.dumps(content))
         response = make_response(jsonp)
         response.headers['Content-Type'] = 'application/javascript'
         return response
