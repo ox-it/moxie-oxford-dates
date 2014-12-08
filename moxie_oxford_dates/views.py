@@ -16,8 +16,12 @@ class Today(ServiceView):
     def handle_request(self):
         dates_service = DatesService.from_context()
         components = dates_service.get_today_components()
+        formatted_today = dates_service.get_formatted_date(components)
+
         return {
-            'today': dates_service.get_formatted_date(components),
+            'today': formatted_today,       # TODO we should deprecate this property
+            'formatted': formatted_today,   # and align on "formatted" as other method
+            'formatted_nocal': dates_service.get_formatted_date_nocal(components),
             'components': components,
             '_links': {
                 'self': {
@@ -38,11 +42,10 @@ class Date(ServiceView):
         except ValueError as ve:
             raise BadRequest(message=ve.message)
         components = dates_service.get_ox_components(date)
-        formatted_nocal = dates_service.get_ox_components(date)
 
         return {
             'formatted': dates_service.get_formatted_date(components),
-            'formatted_nocal': formatted_nocal,
+            'formatted_nocal': dates_service.get_formatted_date_nocal(components),
             'components': components,
             '_links': {
                 'self': {
