@@ -38,8 +38,11 @@ class Date(ServiceView):
         except ValueError as ve:
             raise BadRequest(message=ve.message)
         components = dates_service.get_ox_components(date)
+        formatted_nocal = dates_service.get_ox_components(date)
+
         return {
             'formatted': dates_service.get_formatted_date(components),
+            'formatted_nocal': formatted_nocal,
             'components': components,
             '_links': {
                 'self': {
