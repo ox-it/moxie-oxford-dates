@@ -1,1 +1,1 @@
-git+https://github.com/ox-it/oxford-term-dates.git#egg=oxford-term-dates
+-e git+https://github.com/ox-it/oxford-term-dates.git#egg=oxford-term-dates
