@@ -1,7 +1,9 @@
 from setuptools import setup, find_packages
 
 
-install_requires = open('requirements.txt').readlines()
+install_requires = [
+    'git+https://github.com/ox-it/oxford-term-dates.git#egg=oxford-term-dates',
+]
 
 setup(name='moxie-oxford-dates',
     version='0.2',
